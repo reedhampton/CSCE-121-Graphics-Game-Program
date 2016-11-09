@@ -1,61 +1,47 @@
-#include "Project_Menu.h"
+#include "Bootup.h"
+#include "Window_Manager.h"
 
-class Bootup : Project_Menu		//Define the class for our first menu
+//Go and find our instance of Manager_Window
+extern Window_Manager manager_instance;
+
+// - - - - - Constructor - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+Bootup::Bootup(Point p , int w , int h , const string& name)		//Define our constructor
+: Graph_lib::Window(p, w, h, name),
+  quit_button{Point {840, 05} , 50 , 30, "Quit" , cb_quit}	,		//define the buttons we want to attach
+  move_to_tutorial_button{Point {425, 200} , 75 , 50, "Tutorial" , cb_move_to_tutorial} , 
+  move_to_game_button{Point {425, 300} , 75 , 50, "Game" , cb_move_to_game}
 {
-	private:
-		string windowname = "Bootup Menu";		//store the name of this window as a private data field
-	protected:
-		string get_windowname();	// Declare a public function to acces the private data fields
-		void attach_Bootup_buttons();
-		
-		//CALLBACK FUNCTIONS		
-		static void cb_quit(Address , Address);	//Callback for closing the window	
-		static void cb_tutorial(Address , Address);	//Callback for switching to the tutorial window
-	public:
-		Bootup();	//Declare a constructor
-		
-		//BUTTONS		
-			Button tutorial_button {Point {350,260} , 75 , 50 , "Tutorial", cb_tutorial};	//create a button
-			Button exit_button {Point {350,200} , 75 , 50 , "Exit", cb_quit};	//create a button
-};
-
-//- - CONSTRUCTOR- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -//
-Bootup::Bootup()	
-{
-	string menu_name =  get_windowname();	//Retrieves the private data field and stores it in this string
-	Project_Menu::return_window(menu_name);	//Calls the function from menu, this creates the POINTER that holds the ADDRESS to our WINDOW
-
-	attach_Bootup_buttons();
-
-	gui_main();	//draw everything
+	attach(quit_button);											//Attach the button
+	attach(move_to_tutorial_button);
+	attach(move_to_game_button);
 }
-//- - GET WINDOW NAME FUNCTION - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -//
-	string Bootup::get_windowname()	//retrieve the private datafield of the window name
+// - - - - - Quit Button Callback and Function - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+	void Bootup::cb_quit(Address, Address pw)							//Define our call back function
 	{
-		return windowname;
+		manager_instance.bootup_window->hide();							// Run hide() on the member (bootup_window) of manager_instance
 	}
-//- - -ATTACH/DETACH FUCNTIONS- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -//
-void Bootup::attach_Bootup_buttons()
-{
-	pointer_to_window -> attach(exit_button);	//Dereferance using structural dereferance and attach our button
-	pointer_to_window -> attach(tutorial_button);	//Dereferance using structural dereferance and attach our button
-}
-//- - - CALLBACK/BOOTUP FUNCTIONS FOR EXIT BUTTON- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -//
-	void Bootup::cb_quit( Address , Address pw)	//Callback for button "quit" allows us to call our function
+// - - - - - Tutorial Button Callback and Function - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+	void Bootup::cb_move_to_tutorial(Address , Address pw)
 	{
-		reference_to<Project_Menu>(pw).quit();
+		reference_to<Bootup>(pw).show_tutorial();
 	}
-//- - - CALLBACK/BOOTUP FUNCTIONS FOR TUTORIAL BUTTON - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -//
-	void Bootup::cb_tutorial( Address , Address pw)	//Callback for button "quit" allows us to call our function
+	void Bootup::show_tutorial()
 	{
-		reference_to<Project_Menu>(pw).tutorial();
+		manager_instance.bootup_window->hide();
+		manager_instance.tutorial_window->show();
 	}
-//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -//
+// - - - - - Game Button Callback and Function - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //	
+	void Bootup::cb_move_to_game(Address , Address pw)
+	{
+		reference_to<Bootup>(pw).show_game();
+	}
+	void Bootup::show_game()
+	{
+		manager_instance.bootup_window->hide();
+		manager_instance.game_window->show();
+	}
+
+// - - - - - High Score Button Callback and Function - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
 
-
-int main()		//TEST FOR A MAIN FUNCTION
-{
-	Bootup test;
-}
 
