@@ -6,6 +6,5 @@
 
 int main()
 {
-	cout<< "Hello world";
 	return gui_main();
 }

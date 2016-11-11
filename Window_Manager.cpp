@@ -7,9 +7,9 @@
 
 //Define our constructor (creates our windows that we will be manipulating)
 	Window_Manager::Window_Manager()	//Initialization list
-		: origin{500, 0},
-		  window_xmax(900),
-		  window_ymax(900),
+		: origin{0, 0},
+		  window_xmax(1200),
+		  window_ymax(800),
 		  bootup_window(new Bootup(origin , window_xmax , window_ymax , "Bootup Window")),
 		  game_window(new Game(origin , window_xmax , window_ymax , "Game Window")),
 		  tutorial_window(new Tutorial(origin , window_xmax , window_ymax , "Tutorial Window")),

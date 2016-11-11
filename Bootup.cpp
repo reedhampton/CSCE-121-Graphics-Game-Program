@@ -7,9 +7,9 @@ extern Window_Manager manager_instance;
 // - - - - - Constructor - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 Bootup::Bootup(Point p , int w , int h , const string& name)		//Define our constructor
 : Graph_lib::Window(p, w, h, name),
-  quit_button{Point {840, 05} , 50 , 30, "Quit" , cb_quit}	,		//define the buttons we want to attach
-  move_to_tutorial_button{Point {425, 200} , 75 , 50, "Tutorial" , cb_move_to_tutorial} , 
-  move_to_game_button{Point {425, 300} , 75 , 50, "Game" , cb_move_to_game}
+  quit_button{Point {1125, 05} , 50 , 30, "Quit" , cb_quit}	,		//define the buttons we want to attach
+  move_to_tutorial_button{Point {550, 200} , 100 , 50, "Tutorial" , cb_move_to_tutorial} , 
+  move_to_game_button{Point {550, 300} , 100 , 50, "Game" , cb_move_to_game}
 {
 	attach(quit_button);											//Attach the button
 	attach(move_to_tutorial_button);
