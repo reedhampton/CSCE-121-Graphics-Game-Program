@@ -38,7 +38,10 @@ Game::Game(Point p , int w , int h , const string& name)		//Define our construct
   box_7b {Point{763,400} , rectangle_w_h , rectangle_w_h} ,
   box_8b {Point{863,400} , rectangle_w_h , rectangle_w_h} ,
   box_9b {Point{963,400} , rectangle_w_h , rectangle_w_h} ,
-  box_10b{Point{1063,400} , rectangle_w_h , rectangle_w_h} 
+  box_10b {Point{1063,400} , rectangle_w_h , rectangle_w_h} ,
+  button_4a{Point {463, 200} , rectangle_w_h , rectangle_w_h, "TEST", cb_button_test} ,		//ISSUE BUTTON ONLY TAKES CONST string& WE NEED IT TO TAKE A CHAR
+  button_5a{Point {563, 200} , rectangle_w_h , rectangle_w_h, "TEST" , cb_button_test} ,
+  button_6a{Point {663, 200} , rectangle_w_h , rectangle_w_h, "TEST" , cb_button_test}
 {
 	attach(back_button);	//Attach the back button
 	attach(menu_button);	//Attach the menu_button button
@@ -185,6 +188,7 @@ Game::Game(Point p , int w , int h , const string& name)		//Define our construct
 				detach(box_10b);
 				break;	
 				}
+		difficulty_level = 0;		
 	}
 // - - - - - High Score Button Callback and Function - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 	void Game::cb_menu_pressed(Address , Address pw)				//Define our callback function
@@ -213,6 +217,22 @@ Game::Game(Point p , int w , int h , const string& name)		//Define our construct
 		attach(box_4b);
 		attach(box_5b);
 		attach(box_6b);
+		
+		attach(button_4a);
+		attach(button_5a);
+		attach(button_6a);
+	
+		a_line.resize(difficulty_level);
+		b_line.resize(difficulty_level);
+		
+		a_line[0] = '7';
+		a_line[1] = '+';
+		a_line[2] = '9';
+		
+		text_4a = a_line[0];
+		text_5a = a_line[1];
+		text_6a = a_line[2];		
+		
 		
 	}
 // - - - - - Difficulty Level 4 Callback and Function - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //	
@@ -394,6 +414,16 @@ Game::Game(Point p , int w , int h , const string& name)		//Define our construct
 	}
 
 // - - - - - High Score Button Callback and Function - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-
+	void Game::cb_button_test(Address , Address pw)	//Define our callback function
+	{
+		reference_to<Game>(pw).button_test();
+	}		
+	void Game::button_test()
+	{
+		cout << "In Button Test\n";
+		dynamic_cast<Game*>(manager_instance.game_window)->button_4a.hide();
+		
+		cout << a_line[0] << '\n';
+	}
 
 
