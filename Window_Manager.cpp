@@ -2,6 +2,7 @@
 #include "Bootup.h"
 #include "Tutorial.h"
 #include "Game.h"
+#include "Highscores.h"
 //#include "Highscores.h"
 
 
@@ -13,7 +14,7 @@
 		  bootup_window(new Bootup(origin , window_xmax , window_ymax , "Bootup Window")),
 		  game_window(new Game(origin , window_xmax , window_ymax , "Game Window")),
 		  tutorial_window(new Tutorial(origin , window_xmax , window_ymax , "Tutorial Window")),
-		  highscores_window(new Bootup(origin , window_xmax , window_ymax , "Highscores Window"))
+		  highscores_window(new Highscores(origin , window_xmax , window_ymax , "Highscores Window"))
 {
 	tutorial_window->hide();	//hide everything but our bootup window
 	highscores_window->hide();
