@@ -39,9 +39,16 @@ Game::Game(Point p , int w , int h , const string& name)		//Define our construct
   box_8b {Point{863,400} , rectangle_w_h , rectangle_w_h} ,
   box_9b {Point{963,400} , rectangle_w_h , rectangle_w_h} ,
   box_10b {Point{1063,400} , rectangle_w_h , rectangle_w_h} ,
-  button_4a{Point {463, 200} , rectangle_w_h , rectangle_w_h, "TEST", cb_button_test} ,		//ISSUE BUTTON ONLY TAKES CONST string& WE NEED IT TO TAKE A CHAR
-  button_5a{Point {563, 200} , rectangle_w_h , rectangle_w_h, "TEST" , cb_button_test} ,
-  button_6a{Point {663, 200} , rectangle_w_h , rectangle_w_h, "TEST" , cb_button_test}
+  button_1a{Point {463, 200} , rectangle_w_h , rectangle_w_h, "1", cb_button_1a} ,		//ISSUE BUTTON ONLY TAKES CONST string& WE NEED IT TO TAKE A CHAR
+  button_2a{Point {563, 200} , rectangle_w_h , rectangle_w_h, "2" , cb_button_2a} ,
+  button_3a{Point {663, 200} , rectangle_w_h , rectangle_w_h, "3" , cb_button_3a} ,
+  button_4a{Point {763, 200} , rectangle_w_h , rectangle_w_h, "4", cb_button_4a} ,		//ISSUE BUTTON ONLY TAKES CONST string& WE NEED IT TO TAKE A CHAR
+  button_5a{Point {863, 200} , rectangle_w_h , rectangle_w_h, "5" , cb_button_5a} ,
+  button_6a{Point {963, 200} , rectangle_w_h , rectangle_w_h, "6" , cb_button_6a} ,
+  button_7a{Point {963, 200} , rectangle_w_h , rectangle_w_h, "7", cb_button_7a} ,		//ISSUE BUTTON ONLY TAKES CONST string& WE NEED IT TO TAKE A CHAR
+  button_8a{Point {963, 200} , rectangle_w_h , rectangle_w_h, "8" , cb_button_8a} ,
+  button_9a{Point {963, 200} , rectangle_w_h , rectangle_w_h, "9" , cb_button_9a} ,
+  button_10a{Point{963, 200} , rectangle_w_h , rectangle_w_h, "10" , cb_button_10a}
 {
 	attach(back_button);	//Attach the back button
 	attach(menu_button);	//Attach the menu_button button
@@ -77,6 +84,7 @@ Game::Game(Point p , int w , int h , const string& name)		//Define our construct
 				
 				detach(button_1a);
 				detach(button_2a);
+				detach(button_3a);
 				break;
 			case 4:
 				detach(box_4a);
@@ -87,6 +95,7 @@ Game::Game(Point p , int w , int h , const string& name)		//Define our construct
 				detach(box_5b);
 				detach(box_6b);
 				detach(box_7b);
+				
 				detach(button_1a);
 				detach(button_2a);
 				detach(button_3a);
