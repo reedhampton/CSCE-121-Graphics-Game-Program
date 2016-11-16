@@ -74,6 +74,9 @@ Game::Game(Point p , int w , int h , const string& name)		//Define our construct
 				detach(box_4b);
 				detach(box_5b);
 				detach(box_6b);
+				
+				detach(button_1a);
+				detach(button_2a);
 				break;
 			case 4:
 				detach(box_4a);
@@ -84,6 +87,10 @@ Game::Game(Point p , int w , int h , const string& name)		//Define our construct
 				detach(box_5b);
 				detach(box_6b);
 				detach(box_7b);
+				detach(button_1a);
+				detach(button_2a);
+				detach(button_3a);
+				detach(button_4a);
 				break;
 			case 5:
 				detach(box_3a);
@@ -96,6 +103,18 @@ Game::Game(Point p , int w , int h , const string& name)		//Define our construct
 				detach(box_5b);
 				detach(box_6b);
 				detach(box_7b);
+				
+					button_1a.move(100 , 0);
+				detach(button_1a);
+					button_2a.move(100 , 0);
+				detach(button_2a);
+					button_3a.move(100 , 0);
+				detach(button_3a);
+					button_4a.move(100 , 0);
+				detach(button_4a);
+					button_5a.move(100 , 0);
+				detach(button_5a);
+		
 				break;
 			case 6:
 				detach(box_3a);
@@ -110,6 +129,19 @@ Game::Game(Point p , int w , int h , const string& name)		//Define our construct
 				detach(box_6b);
 				detach(box_7b);
 				detach(box_8b);
+				
+					button_1a.move(100 , 0);
+				detach(button_1a);
+					button_2a.move(100 , 0);
+				detach(button_2a);
+					button_3a.move(100 , 0);
+				detach(button_3a);
+					button_4a.move(100 , 0);
+				detach(button_4a);
+					button_5a.move(100 , 0);
+				detach(button_5a);
+					button_6a.move(100 , 0);
+				detach(button_6a);
 				break;	
 			case 7:
 				detach(box_2a);
@@ -126,6 +158,21 @@ Game::Game(Point p , int w , int h , const string& name)		//Define our construct
 				detach(box_6b);
 				detach(box_7b);
 				detach(box_8b);
+				
+					button_1a.move(200 , 0);
+				detach(button_1a);
+					button_2a.move(200 , 0);
+				detach(button_2a);
+					button_3a.move(200 , 0);
+				detach(button_3a);
+					button_4a.move(200 , 0);
+				detach(button_4a);
+					button_5a.move(200 , 0);
+				detach(button_5a);
+					button_6a.move(200 , 0);
+				detach(button_6a);
+					button_7a.move(100 , 0);
+				detach(button_7a);
 				break;	
 			case 8:
 				detach(box_2a);
@@ -144,6 +191,22 @@ Game::Game(Point p , int w , int h , const string& name)		//Define our construct
 				detach(box_7b);
 				detach(box_8b);
 				detach(box_9b);
+				
+				button_1a.move(200 , 0);
+					detach(button_1a);
+				button_2a.move(200 , 0);
+					detach(button_2a);
+				button_3a.move(200 , 0);
+					detach(button_3a);
+				button_4a.move(200 , 0);
+					detach(button_4a);
+				button_5a.move(200 , 0);
+					detach(button_5a);
+				button_6a.move(200 , 0);
+					detach(button_6a);
+				button_7a.move(100 , 0);
+					detach(button_7a);
+					detach(button_8a);
 				break;
 			case 9:
 				detach(box_1a);
@@ -164,6 +227,24 @@ Game::Game(Point p , int w , int h , const string& name)		//Define our construct
 				detach(box_7b);
 				detach(box_8b);
 				detach(box_9b);
+				
+				button_1a.move(300 , 0);
+					detach(button_1a);
+				button_2a.move(300 , 0);
+					detach(button_2a);
+				button_3a.move(300 , 0);
+					detach(button_3a);
+				button_4a.move(300 , 0);
+					detach(button_4a);
+				button_5a.move(300 , 0);
+					detach(button_5a);
+				button_6a.move(300 , 0);
+					detach(button_6a);
+				button_7a.move(200 , 0);
+					detach(button_7a);
+				button_8a.move(100 , 0);
+					detach(button_8a);
+					detach(button_9a);
 				break;
 			case 10:
 				detach(box_1a);
@@ -186,11 +267,31 @@ Game::Game(Point p , int w , int h , const string& name)		//Define our construct
 				detach(box_8b);
 				detach(box_9b);
 				detach(box_10b);
+				
+				button_1a.move(300 , 0);
+					detach(button_1a);
+				button_2a.move(300 , 0);
+					detach(button_2a);
+				button_3a.move(300 , 0);
+					detach(button_3a);
+				button_4a.move(300 , 0);
+					detach(button_4a);
+				button_5a.move(300 , 0);
+					detach(button_5a);
+				button_6a.move(300 , 0);
+					detach(button_6a);
+				button_7a.move(200 , 0);
+					detach(button_7a);
+				button_8a.move(100 , 0);
+					detach(button_8a);
+					detach(button_9a);
+				button_10a.move(-100 , 0);
+					detach(button_10a);
 				break;	
 				}
 		difficulty_level = 0;		
 	}
-// - - - - - High Score Button Callback and Function - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// - - - - - Show Difficulty Menu Callback and Function - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 	void Game::cb_menu_pressed(Address , Address pw)				//Define our callback function
 	{
 		reference_to<Game>(pw).menu_pressed();
@@ -209,6 +310,8 @@ Game::Game(Point p , int w , int h , const string& name)		//Define our construct
 	{
 		difficulty_level = 3;
 		
+		a_line.resize(difficulty_level);
+		
 		dynamic_cast<Game*>(manager_instance.game_window)->detach(select_difficulty_menu);
 			
 		attach(box_4a);		//Attach the rectangles which will contain our buttons
@@ -218,22 +321,9 @@ Game::Game(Point p , int w , int h , const string& name)		//Define our construct
 		attach(box_5b);
 		attach(box_6b);
 		
-		attach(button_4a);
-		attach(button_5a);
-		attach(button_6a);
-	
-		a_line.resize(difficulty_level);
-		b_line.resize(difficulty_level);
-		
-		a_line[0] = '7';
-		a_line[1] = '+';
-		a_line[2] = '9';
-		
-		text_4a = a_line[0];
-		text_5a = a_line[1];
-		text_6a = a_line[2];		
-		
-		
+		attach(button_1a);
+		attach(button_2a);
+		attach(button_3a);		
 	}
 // - - - - - Difficulty Level 4 Callback and Function - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //	
 	void Game::cb_difficulty_4(Address , Address pw)				//Define our callback function
@@ -243,6 +333,9 @@ Game::Game(Point p , int w , int h , const string& name)		//Define our construct
 	void Game::difficulty_4_function()
 	{
 		difficulty_level = 4;
+		
+		a_line.resize(difficulty_level);
+		
 		dynamic_cast<Game*>(manager_instance.game_window)->detach(select_difficulty_menu);
 			
 		attach(box_4a);		//Attach the rectangles which will contain our buttons
@@ -254,6 +347,11 @@ Game::Game(Point p , int w , int h , const string& name)		//Define our construct
 		attach(box_6b);
 		attach(box_7b);
 		
+		attach(button_1a);
+		attach(button_2a);
+		attach(button_3a);
+		attach(button_4a);
+		
 	}
 // - - - - - Difficulty Level 5 Callback and Function - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //	
 	void Game::cb_difficulty_5(Address , Address pw)				//Define our callback function
@@ -263,6 +361,8 @@ Game::Game(Point p , int w , int h , const string& name)		//Define our construct
 	void Game::difficulty_5_function()
 	{
 		difficulty_level = 5;
+		a_line.resize(difficulty_level);
+		
 		dynamic_cast<Game*>(manager_instance.game_window)->detach(select_difficulty_menu);
 		
 		attach(box_3a);		//Attach the rectangles which will contain our buttons	
@@ -275,6 +375,17 @@ Game::Game(Point p , int w , int h , const string& name)		//Define our construct
 		attach(box_5b);
 		attach(box_6b);
 		attach(box_7b);
+		
+		attach(button_1a);
+			button_1a.move(-100 , 0);
+		attach(button_2a);
+			button_2a.move(-100 , 0);
+		attach(button_3a);
+			button_3a.move(-100 , 0);
+		attach(button_4a);
+			button_4a.move(-100 , 0);
+		attach(button_5a);
+			button_5a.move(-100 , 0);
 	}
 // - - - - - Difficulty Level 6 Callback and Function - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //	
 	void Game::cb_difficulty_6(Address , Address pw)				//Define our callback function
@@ -284,6 +395,8 @@ Game::Game(Point p , int w , int h , const string& name)		//Define our construct
 	void Game::difficulty_6_function()
 	{
 		difficulty_level = 6;
+		a_line.resize(difficulty_level);
+		
 		dynamic_cast<Game*>(manager_instance.game_window)->detach(select_difficulty_menu);
 		
 		attach(box_3a);		//Attach the rectangles which will contain our buttons	
@@ -297,7 +410,20 @@ Game::Game(Point p , int w , int h , const string& name)		//Define our construct
 		attach(box_5b);
 		attach(box_6b);
 		attach(box_7b);
-		attach(box_8b);				
+		attach(box_8b);		
+
+		attach(button_1a);
+			button_1a.move(-100 , 0);
+		attach(button_2a);
+			button_2a.move(-100 , 0);
+		attach(button_3a);
+			button_3a.move(-100 , 0);
+		attach(button_4a);
+			button_4a.move(-100 , 0);
+		attach(button_5a);
+			button_5a.move(-100 , 0);
+		attach(button_6a);
+			button_6a.move(-100 , 0);
 	}
 // - - - - - Difficulty Level 7 Callback and Function - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //	
 	void Game::cb_difficulty_7(Address , Address pw)				//Define our callback function
@@ -307,6 +433,8 @@ Game::Game(Point p , int w , int h , const string& name)		//Define our construct
 	void Game::difficulty_7_function()
 	{
 		difficulty_level = 7;
+		a_line.resize(difficulty_level);
+		
 		dynamic_cast<Game*>(manager_instance.game_window)->detach(select_difficulty_menu);
 		
 		attach(box_2a);		//Attach the rectangles which will contain our buttons
@@ -323,6 +451,21 @@ Game::Game(Point p , int w , int h , const string& name)		//Define our construct
 		attach(box_6b);
 		attach(box_7b);
 		attach(box_8b);
+		
+		attach(button_1a);
+			button_1a.move(-200 , 0);
+		attach(button_2a);
+			button_2a.move(-200 , 0);
+		attach(button_3a);
+			button_3a.move(-200 , 0);
+		attach(button_4a);
+			button_4a.move(-200 , 0);
+		attach(button_5a);
+			button_5a.move(-200 , 0);
+		attach(button_6a);
+			button_6a.move(-200 , 0);
+		attach(button_7a);
+			button_7a.move(-100 , 0);
 	}
 // - - - - - Difficulty Level 8 Callback and Function - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //	
 	void Game::cb_difficulty_8(Address , Address pw)				//Define our callback function
@@ -332,6 +475,8 @@ Game::Game(Point p , int w , int h , const string& name)		//Define our construct
 	void Game::difficulty_8_function()
 	{
 		difficulty_level = 8;
+		a_line.resize(difficulty_level);
+		
 		dynamic_cast<Game*>(manager_instance.game_window)->detach(select_difficulty_menu);
 		
 		attach(box_2a);		//Attach the rectangles which will contain our buttons
@@ -349,7 +494,24 @@ Game::Game(Point p , int w , int h , const string& name)		//Define our construct
 		attach(box_6b);
 		attach(box_7b);
 		attach(box_8b);
-		attach(box_9b);			
+		attach(box_9b);	
+
+		attach(button_1a);
+			button_1a.move(-200 , 0);
+		attach(button_2a);
+			button_2a.move(-200 , 0);
+		attach(button_3a);
+			button_3a.move(-200 , 0);
+		attach(button_4a);
+			button_4a.move(-200 , 0);
+		attach(button_5a);
+			button_5a.move(-200 , 0);
+		attach(button_6a);
+			button_6a.move(-200 , 0);
+		attach(button_7a);
+			button_7a.move(-100 , 0);
+		attach(button_8a);
+			
 	}
 // - - - - - Difficulty Level 9 Callback and Function - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //	
 	void Game::cb_difficulty_9(Address , Address pw)				//Define our callback function
@@ -359,6 +521,8 @@ Game::Game(Point p , int w , int h , const string& name)		//Define our construct
 	void Game::difficulty_9_function()
 	{
 		difficulty_level = 9;
+		a_line.resize(difficulty_level);
+		
 		dynamic_cast<Game*>(manager_instance.game_window)->detach(select_difficulty_menu);
 		
 		attach(box_1a);		//Attach the rectangles which will contain our buttons
@@ -380,6 +544,24 @@ Game::Game(Point p , int w , int h , const string& name)		//Define our construct
 		attach(box_8b);
 		attach(box_9b);	
 		
+		attach(button_1a);
+			button_1a.move(-300 , 0);
+		attach(button_2a);
+			button_2a.move(-300 , 0);
+		attach(button_3a);
+			button_3a.move(-300 , 0);
+		attach(button_4a);
+			button_4a.move(-300 , 0);
+		attach(button_5a);
+			button_5a.move(-300 , 0);
+		attach(button_6a);
+			button_6a.move(-300 , 0);
+		attach(button_7a);
+			button_7a.move(-200 , 0);
+		attach(button_8a);
+			button_8a.move(-100 , 0);
+		attach(button_9a);
+		
 	}
 // - - - - - Difficulty Level 10 Callback and Function - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //	
 	void Game::cb_difficulty_10(Address , Address pw)				//Define our callback function
@@ -388,7 +570,9 @@ Game::Game(Point p , int w , int h , const string& name)		//Define our construct
 	}
 	void Game::difficulty_10_function()
 	{
-		difficulty_level = 9;
+		difficulty_level = 10;
+		a_line.resize(difficulty_level);
+		
 		dynamic_cast<Game*>(manager_instance.game_window)->detach(select_difficulty_menu);
 		
 		attach(box_1a);		//Attach the rectangles which will contain our buttons
@@ -410,20 +594,139 @@ Game::Game(Point p , int w , int h , const string& name)		//Define our construct
 		attach(box_7b);
 		attach(box_8b);
 		attach(box_9b);
-		attach(box_10b);		
+		attach(box_10b);
+
+		attach(button_1a);
+			button_1a.move(-300 , 0);
+		attach(button_2a);
+			button_2a.move(-300 , 0);
+		attach(button_3a);
+			button_3a.move(-300 , 0);
+		attach(button_4a);
+			button_4a.move(-300 , 0);
+		attach(button_5a);
+			button_5a.move(-300 , 0);
+		attach(button_6a);
+			button_6a.move(-300 , 0);
+		attach(button_7a);
+			button_7a.move(-200 , 0);
+		attach(button_8a);
+			button_8a.move(-100 , 0);
+		attach(button_9a);
+		attach(button_10a);
+			button_10a.move(100 , 0);
 	}
 
-// - - - - - High Score Button Callback and Function - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-	void Game::cb_button_test(Address , Address pw)	//Define our callback function
+	
+// - - - - - Button 1a Callback and Function - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+	void Game::cb_button_1a(Address , Address pw)	//Define our callback function
 	{
-		reference_to<Game>(pw).button_test();
+		reference_to<Game>(pw).button_fct_1a();
 	}		
-	void Game::button_test()
+	void Game::button_fct_1a()
 	{
-		cout << "In Button Test\n";
+		dynamic_cast<Game*>(manager_instance.game_window)->button_1a.hide();
+		
+		b_line.push_back(a_line[0]);
+	}
+// - - - - - Button 2a Callback and Function - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+	void Game::cb_button_2a(Address , Address pw)	//Define our callback function
+	{
+		reference_to<Game>(pw).button_fct_2a();
+	}		
+	void Game::button_fct_2a()
+	{
+		dynamic_cast<Game*>(manager_instance.game_window)->button_2a.hide();
+		
+		b_line.push_back(a_line[1]);
+	}
+// - - - - - Button 3a Callback and Function - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+	void Game::cb_button_3a(Address , Address pw)	//Define our callback function
+	{
+		reference_to<Game>(pw).button_fct_3a();
+	}		
+	void Game::button_fct_3a()
+	{
+		dynamic_cast<Game*>(manager_instance.game_window)->button_3a.hide();
+		
+		b_line.push_back(a_line[2]);
+	}
+// - - - - - Button 4a Callback and Function - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+	void Game::cb_button_4a(Address , Address pw)	//Define our callback function
+	{
+		reference_to<Game>(pw).button_fct_4a();
+	}		
+	void Game::button_fct_4a()
+	{
 		dynamic_cast<Game*>(manager_instance.game_window)->button_4a.hide();
 		
-		cout << a_line[0] << '\n';
+		b_line.push_back(a_line[3]);
+	}
+// - - - - - Button 5a Callback and Function - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+	void Game::cb_button_5a(Address , Address pw)	//Define our callback function
+	{
+		reference_to<Game>(pw).button_fct_5a();
+	}		
+	void Game::button_fct_5a()
+	{
+		dynamic_cast<Game*>(manager_instance.game_window)->button_5a.hide();
+		
+		b_line.push_back(a_line[4]);
+	}
+// - - - - - Button 6a Callback and Function - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+	void Game::cb_button_6a(Address , Address pw)	//Define our callback function
+	{
+		reference_to<Game>(pw).button_fct_6a();
+	}		
+	void Game::button_fct_6a()
+	{
+		dynamic_cast<Game*>(manager_instance.game_window)->button_6a.hide();
+		
+		b_line.push_back(a_line[5]);
+	}
+// - - - - - Button 7a Callback and Function - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+	void Game::cb_button_7a(Address , Address pw)	//Define our callback function
+	{
+		reference_to<Game>(pw).button_fct_7a();
+	}		
+	void Game::button_fct_7a()
+	{
+		dynamic_cast<Game*>(manager_instance.game_window)->button_7a.hide();
+		
+		b_line.push_back(a_line[6]);
+	}
+// - - - - - Button 8a Callback and Function - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+	void Game::cb_button_8a(Address , Address pw)	//Define our callback function
+	{
+		reference_to<Game>(pw).button_fct_8a();
+	}		
+	void Game::button_fct_8a()
+	{
+		dynamic_cast<Game*>(manager_instance.game_window)->button_8a.hide();
+		
+		b_line.push_back(a_line[7]);
+	}
+// - - - - - Button 9a Callback and Function - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+	void Game::cb_button_9a(Address , Address pw)	//Define our callback function
+	{
+		reference_to<Game>(pw).button_fct_9a();
+	}		
+	void Game::button_fct_9a()
+	{
+		dynamic_cast<Game*>(manager_instance.game_window)->button_9a.hide();
+		
+		b_line.push_back(a_line[8]);
+	}
+// - - - - - Button 10a Callback and Function - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+	void Game::cb_button_10a(Address , Address pw)	//Define our callback function
+	{
+		reference_to<Game>(pw).button_fct_10a();
+	}		
+	void Game::button_fct_10a()
+	{
+		dynamic_cast<Game*>(manager_instance.game_window)->button_10a.hide();
+		
+		b_line.push_back(a_line[9]);
 	}
 
 

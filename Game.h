@@ -71,17 +71,17 @@ class Game : public Graph_lib::Window	//Extend Bootup from Graph_lib::Window
 		Rectangle box_9b;
 		Rectangle box_10b;
 		
-/*		Button button_1a;					//Buttons to fill the top row
+		Button button_1a;					//Buttons to fill the top row
 		Button button_2a;
-		Button button_3a;*/
+		Button button_3a;
 		Button button_4a;
 		Button button_5a;
 		Button button_6a;
-	/*	Button button_7a;
+		Button button_7a;
 		Button button_8a;
 		Button button_9a;
 		Button button_10a;
-		
+		/*
 		Button button_1b;					//Buttons to fill the bottom row
 		Button button_2b;
 		Button button_3b;
@@ -126,8 +126,35 @@ class Game : public Graph_lib::Window	//Extend Bootup from Graph_lib::Window
 		static void cb_difficulty_10(Address , Address);	//Declare our callback function
 		void difficulty_10_function();
 		
-		static void cb_button_test(Address , Address);	//Declare our callback function
-		void button_test();
+		static void cb_button_1a(Address , Address);	//Declare our callback function
+		void button_fct_1a();
+		
+		static void cb_button_2a(Address , Address);	//Declare our callback function
+		void button_fct_2a();
+		
+		static void cb_button_3a(Address , Address);	//Declare our callback function
+		void button_fct_3a();
+		
+		static void cb_button_4a(Address , Address);	//Declare our callback function
+		void button_fct_4a();
+		
+		static void cb_button_5a(Address , Address);	//Declare our callback function
+		void button_fct_5a();
+		
+		static void cb_button_6a(Address , Address);	//Declare our callback function
+		void button_fct_6a();
+		
+		static void cb_button_7a(Address , Address);	//Declare our callback function
+		void button_fct_7a();
+		
+		static void cb_button_8a(Address , Address);	//Declare our callback function
+		void button_fct_8a();
+		
+		static void cb_button_9a(Address , Address);	//Declare our callback function
+		void button_fct_9a();
+		
+		static void cb_button_10a(Address , Address);	//Declare our callback function
+		void button_fct_10a();
 };
 
 #endif
