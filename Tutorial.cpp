@@ -7,7 +7,8 @@ extern Window_Manager manager_instance;
 // - - - - - Constructor - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 Tutorial::Tutorial(Point p , int w , int h , const string& name)		//Define our constructor
 : Graph_lib::Window(p, w, h, name),
-  back_button{Point {10, 10} , 50 , 30, "Back" , cb_back} 			//define the buttons we want to attach
+  back_button{Point {10, 10} , 50 , 30, "Back" , cb_back}		//define the buttons we want to attach
+  
 {
 	attach(back_button);											//Attach the button
 }

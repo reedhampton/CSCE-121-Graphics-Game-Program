@@ -10,6 +10,7 @@ class Tutorial : public Graph_lib::Window	//Extend Tutorial from Graph_lib::Wind
 {
 	private:
 		Button back_button;											// Declare our button
+
 	public:
 		Tutorial(Point p , int w , int h , const string& name);		//Declare our constructor
 		
