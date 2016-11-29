@@ -274,6 +274,27 @@ private:
     int fnt_sz;
 };
 
+struct Nonconst_Text : Shape {
+    // the point is the bottom left of the first letter
+    Nonconst_Text(Point x, string& s) : lab(s), fnt(fl_font()),
+    	fnt_sz((fl_size()<14)?14:fl_size()) { add(x); }
+
+    void draw_lines() const;
+
+    void set_label(string& s) { lab = s; }
+    string label() const { return lab; }
+
+    void set_font(Font f) { fnt = f; }
+    Font font() const { return Font(fnt); }
+
+    void set_font_size(int s) { fnt_sz = s; }
+    int font_size() const { return fnt_sz; }
+private:
+    string lab;    // label
+    Font fnt;
+    int fnt_sz;
+};
+
 //------------------------------------------------------------------------------
 
 struct Axis : Shape {

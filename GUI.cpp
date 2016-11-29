@@ -20,6 +20,13 @@ void Button::attach(Window& win)
     own = &win;
 }
 
+void Nonconst_Button::attach(Window& win)
+{
+    pw = new Fl_Button(loc.x, loc.y, width, height, label.c_str());
+    pw->callback(reinterpret_cast<Fl_Callback*>(do_it), &win); // pass the window
+    own = &win;
+}
+
 //------------------------------------------------------------------------------
 
 int In_box::get_int()

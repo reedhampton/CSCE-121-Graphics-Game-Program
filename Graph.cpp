@@ -298,6 +298,15 @@ void Text::draw_lines() const
     fl_font(ofnt,osz);
 }
 
+void Nonconst_Text::draw_lines() const
+{
+    int ofnt = fl_font();
+    int osz = fl_size();
+    fl_font(fnt.as_int(),fnt_sz);
+    fl_draw(lab.c_str(),point(0).x,point(0).y);
+    fl_font(ofnt,osz);
+}
+
 //------------------------------------------------------------------------------
 
 Axis::Axis(Orientation d, Point xy, int length, int n, string lab) :

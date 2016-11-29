@@ -13,28 +13,37 @@ class Game : public Graph_lib::Window	//Extend Bootup from Graph_lib::Window
 		int difficulty_level;						// 3 - 7
 		int c_digits;
 		int c_operands;
+		int c_left_parenthesis;
+		int c_right_parenthesis;
 		
 		vector <char> a_line;
 		vector <char> b_line;
 		
+		string button_1a_content;
+		string button_2a_content;
+		string button_3a_content;
+		string button_4a_content;
+		string button_5a_content;
+		string button_6a_content;
+		string button_7a_content;
+		
+		string button_1b_content;
+		string button_2b_content;
+		string button_3b_content;
+		string button_4b_content;
+		string button_5b_content;
+		string button_6b_content;
+		string button_7b_content;
+		
+		int b_line_counter;
+		
+		stringstream st;
+		
+		double equation_result;
+		string equation_result_string;
+		
 		void generate_randomized_vector(vector<char>&);		//0-16 as int values, each representing a character
 		void convert_and_insert(vector<char>& , int , int);
-		
-		char text_1a;
-		char text_2a;
-		char text_3a;
-		char text_4a;
-		char text_5a;
-		char text_6a;
-		char text_7a;
-		
-		char text_1b;
-		char text_2b;
-		char text_3b;
-		char text_4b;
-		char text_5b;
-		char text_6b;
-		char text_7b;
 	
 		Button back_button;											// Declare our button
 		Button menu_button;
@@ -62,22 +71,26 @@ class Game : public Graph_lib::Window	//Extend Bootup from Graph_lib::Window
 		Rectangle box_6b;
 		Rectangle box_7b;
 	//Buttons to fill the top row	
-		Button button_1a;	
-		Button button_2a;
-		Button button_3a;
-		Button button_4a;
-		Button button_5a;
-		Button button_6a;
-		Button button_7a;
-		/*
-		Button button_1b;					//Buttons to fill the bottom row
-		Button button_2b;
-		Button button_3b;
-		Button button_4b;
-		Button button_5b;
-		Button button_6b;
-		Button button_7b;
-		*/
+		Nonconst_Button button_1a;	
+		Nonconst_Button button_2a;
+		Nonconst_Button button_3a;
+		Nonconst_Button button_4a;
+		Nonconst_Button button_5a;
+		Nonconst_Button button_6a;
+		Nonconst_Button button_7a;
+	//Buttons to fill the bottom row	
+		Nonconst_Button button_1b;					
+		Nonconst_Button button_2b;
+		Nonconst_Button button_3b;
+		Nonconst_Button button_4b;
+		Nonconst_Button button_5b;
+		Nonconst_Button button_6b;
+		Nonconst_Button button_7b;
+		
+		Button evaluate;
+		Nonconst_Button button_result;
+
+		
 		
 	public:
 		Game(Point p , int w , int h , const string& name);		//Declare our constructor
@@ -124,6 +137,64 @@ class Game : public Graph_lib::Window	//Extend Bootup from Graph_lib::Window
 		
 		static void cb_button_7a(Address , Address);	//Declare our callback function
 		void button_fct_7a();
+		
+		//BOTTOM ROW BUTTONS FUNCTIONS AND CALLBACKS
+			static void cb_button_1b(Address , Address);	//Declare our callback function
+			void button_fct_1b();
+			
+			static void cb_button_2b(Address , Address);	//Declare our callback function
+			void button_fct_2b();
+			
+			static void cb_button_3b(Address , Address);	//Declare our callback function
+			void button_fct_3b();
+			
+			static void cb_button_4b(Address , Address);	//Declare our callback function
+			void button_fct_4b();
+			
+			static void cb_button_5b(Address , Address);	//Declare our callback function
+			void button_fct_5b();
+			
+			static void cb_button_6b(Address , Address);	//Declare our callback function
+			void button_fct_6b();
+			
+			static void cb_button_7b(Address , Address);	//Declare our callback function
+			void button_fct_7b();
+			
+		static void cb_evaluate(Address , Address);
+		void evaluate_fct();
+		
+		double calculate_equation_fct();
+		
+		static void cb_button_result(Address , Address);	//Declare our callback function
+		void button_result_fct();
+		
+		void detach_b_row_buttons(int);
+		void b_row_copy(int);
+};
+
+//				 Define Class Token for the calculator
+
+class Token {
+public:
+    char kind;        // what kind of token
+    double value;     // for numbers: a value 
+    Token(char ch)    // make a Token from a char
+        :kind(ch), value(0) { }    
+    Token(char ch, double val)     // make a Token from a char and a double
+        :kind(ch), value(val) { }
+};
+
+//				Define class Token_stream for the calculator
+
+class Token_stream
+{
+public: 
+    Token_stream();   // make a Token_stream that reads from cin
+    Token get();      // get a Token (get() is defined elsewhere)
+    void putback(Token t);    // put a Token back
+private:
+    bool full;        // is there a Token in the buffer?
+    Token buffer;     // here is where we keep a Token put back using putback()
 };
 
 #endif

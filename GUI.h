@@ -65,6 +65,15 @@ namespace Graph_lib {
 
         void attach(Window&);
     };
+	
+	struct Nonconst_Button : Widget {
+        Nonconst_Button(Point xy, int w, int h,  string& label, Callback cb)
+            : Widget(xy,w,h,label,cb)
+        {}
+
+		void set_label(string& s) { label = s; }
+        void attach(Window&);
+    };
 
 //------------------------------------------------------------------------------
 
