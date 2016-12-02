@@ -4,6 +4,25 @@
 //Go and find our instance of Manager_Window
 extern Window_Manager manager_instance;
 
+
+Highscore_Values::Highscore_Values()
+	{
+		initials = "";
+		score = 0;
+		
+	}
+
+	void Highscore_Values::set_initials(string x)
+	{
+		initials = x;
+	}
+	
+	void Highscore_Values::set_score(double x)
+	{
+		score = x;
+	}
+	
+	
 // - - - - - Constructor - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 Game::Game(Point p , int w , int h , const string& name)		//Define our constructor
 : Graph_lib::Window(p, w, h, name),
@@ -13,7 +32,8 @@ Game::Game(Point p , int w , int h , const string& name)		//Define our construct
   c_left_parenthesis(0) , 
   c_right_parenthesis(0) ,
   equation_result(0) , 
-  equation_result_string("") ,
+  equation_result_string("Your score is: ") ,
+  user_initials("UNK") ,
   b_line_counter(-1) ,
  ////////////////INITIAL STRING VALUES IN ALL BUTTONS//////////////////////////////////
   button_1a_content("") ,
@@ -30,6 +50,7 @@ Game::Game(Point p , int w , int h , const string& name)		//Define our construct
   button_5b_content("") ,
   button_6b_content("") ,
   button_7b_content("") ,
+  final_score_text("Your score is: "),
  ////////////////INITIAL BUTTONS TO ATTACH//////////////////////////////////
   back_button{Point {10, 10} , 50 , 30, "back" , cb_back} ,		
   menu_button{Point {513, 385} , 175 , 30, "Select the Difficulty Level" , cb_menu_pressed} ,
@@ -73,7 +94,9 @@ Game::Game(Point p , int w , int h , const string& name)		//Define our construct
   button_6b{Point {963, 400} , rectangle_w_h , rectangle_w_h, button_6b_content , cb_button_6b} ,
   button_7b{Point {963, 400} , rectangle_w_h , rectangle_w_h, button_7b_content, cb_button_7b} ,
   evaluate{Point {1000, 700} , (2*rectangle_w_h) , rectangle_w_h, "Evaluate", cb_evaluate} ,
-  button_result{Point {500, 300} , (6*rectangle_w_h) , (6*rectangle_w_h), equation_result_string, cb_button_result}
+  score_box {Point{100,500} , (4*rectangle_w_h) , (3*rectangle_w_h)},
+  final_score{Point{170 , 570 } , equation_result_string} ,
+  move_to_highscores_button{Point{100 , 650} , (4*rectangle_w_h) , rectangle_w_h, "Congratulations! Click to see the Highscores!" , cb_move_to_highscores}
 
 {
 	attach(back_button);	//Attach the back button
@@ -96,6 +119,8 @@ Game::Game(Point p , int w , int h , const string& name)		//Define our construct
 		dynamic_cast<Game*>(manager_instance.game_window)->menu_button.show();
 		manager_instance.game_window->hide();	
 		manager_instance.bootup_window->show();							// Run hide() on the member (bootup_window) of manager_instance
+		if(difficulty_level!= 0)
+		{
 		switch (difficulty_level){
 			case 1: case 2: case 3:				//For whichever difficulty is pressed hide the boxes we showed upon going back
 				detach(box_3a);
@@ -276,11 +301,15 @@ Game::Game(Point p , int w , int h , const string& name)		//Define our construct
 		button_7b_content = "";
 		
 		detach(evaluate);
-		detach(button_result);
+		detach(score_box);
+		detach(final_score);
+		detach(move_to_highscores_button);
 		
 		a_line.clear();
 		b_line.clear();
+		highscores_vector.clear();
 		st.str("");
+		}
 	}
 // - - - - - Show Difficulty Menu Callback and Function - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 	void Game::cb_menu_pressed(Address , Address pw)				//Define our callback function
@@ -291,6 +320,10 @@ Game::Game(Point p , int w , int h , const string& name)		//Define our construct
 	{
 		dynamic_cast<Game*>(manager_instance.game_window)->menu_button.hide();
 		dynamic_cast<Game*>(manager_instance.game_window)->attach(select_difficulty_menu);
+		
+		
+		
+		
 	}
 // - - - - - Fill a_line vector Function - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //	
 	void Game::generate_randomized_vector(vector<char>& a_line)
@@ -923,29 +956,254 @@ Game::Game(Point p , int w , int h , const string& name)		//Define our construct
 	void Game::cb_evaluate(Address , Address pw)	//Define our callback function
 	{
 		reference_to<Game>(pw).evaluate_fct();
-	}		
+	}
+
 	void Game::evaluate_fct()
 	{
 		equation_result = calculate_equation_fct();
-			equation_result_string = to_string(equation_result);
+			equation_result_string.append(to_string(equation_result));
 
-		button_result.set_label(equation_result_string);
-
-		attach(button_result);
+		final_score.set_label(equation_result_string);
+		attach(score_box);
+		attach(final_score);
+		attach(move_to_highscores_button);
+		dynamic_cast<Game*>(manager_instance.game_window)->evaluate.hide();
 		
-		back_button_function();
-					manager_instance.bootup_window->hide();							// Run hide() on the member (bootup_window) of manager_instance
-					manager_instance.game_window->show();	
 	}
-// - - - - - Result Button Callback and Function - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-	void Game::cb_button_result(Address , Address pw)	//Define our callback function
+// - - - - - Move to Highscores Button Callback and Function - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+	void Game::cb_move_to_highscores(Address , Address pw)
 	{
-		reference_to<Game>(pw).button_result_fct();
-	}			
-	void Game::button_result_fct()
-	{
-		cout << "RESULT";		
+		reference_to<Game>(pw).show_highscores();
 	}
+	void Game::show_highscores()
+	{
+		write_to_highscores();
+		
+			manager_instance.game_window->hide();
+			manager_instance.highscores_window->show();
+			back_button_function();
+			manager_instance.bootup_window->hide();
+	}
+// - - - - - Write to Highscores Function - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+	void Game::write_to_highscores()
+	{
+			fstream write_scores;
+			fstream output;
+		
+			double score_value;
+			string initials_value;
+			
+			int count = 0;
+			int five_lines_test = 0;
+			Highscore_Values value;
+			
+		switch(difficulty_level)
+		{
+			case(3):
+			
+				write_scores.open("Difficulty_3_All_scores.txt" , ios_base::app);
+					write_scores << endl << equation_result << '\t' << user_initials;
+				write_scores.close();
+				
+				write_scores.open("Difficulty_3_All_scores.txt");
+
+					while (true)	
+					{
+						write_scores >> score_value;
+						write_scores >> initials_value;
+							value.set_score(score_value);
+							value.set_initials(initials_value);
+						highscores_vector.push_back(value);
+						
+						if(write_scores.eof())
+							break;
+					}
+				write_scores.close();
+				
+				sort(highscores_vector.begin(), highscores_vector.end(),greater<Highscore_Values>());
+				
+				write_scores.open("Difficulty_3_All_scores.txt");
+
+					while(count < highscores_vector.size())
+					{
+						write_scores << highscores_vector[count].score << '\t' << highscores_vector[count].initials << endl;
+						++count;
+					}
+				write_scores.close();	
+					
+////////////////////READ THE TOP 5 LINES TO OUTPUT FILE//////////////////////////////////////////////////////////////////////////////
+					output.open("Difficulty_3_Output.txt", fstream::out);
+					while(five_lines_test < 5)
+					{
+						output << highscores_vector[five_lines_test].score << '\t' << highscores_vector[five_lines_test].initials << endl;
+						++five_lines_test;
+					}
+					output.close();
+					
+				break;
+			case(4):
+				write_scores.open("Difficulty_4_All_scores.txt" , ios_base::app);
+					write_scores << endl << equation_result << '\t' << user_initials;
+				write_scores.close();
+				
+				write_scores.open("Difficulty_4_All_scores.txt");
+
+					while (true)	
+					{
+						write_scores >> score_value;
+						write_scores >> initials_value;
+							value.set_score(score_value);
+							value.set_initials(initials_value);
+						highscores_vector.push_back(value);
+						
+						if(write_scores.eof())
+							break;
+					}
+				write_scores.close();
+				
+				sort(highscores_vector.begin(), highscores_vector.end(),greater<Highscore_Values>());
+				
+				write_scores.open("Difficulty_4_All_scores.txt");
+
+					while(count < highscores_vector.size())
+					{
+						write_scores << highscores_vector[count].score << '\t' << highscores_vector[count].initials << endl;
+						++count;
+					}
+				write_scores.close();	
+					
+////////////////////READ THE TOP 5 LINES TO OUTPUT FILE//////////////////////////////////////////////////////////////////////////////
+					output.open("Difficulty_4_Output.txt", fstream::out);
+					while(five_lines_test < 5)
+					{
+						output << highscores_vector[five_lines_test].score << '\t' << highscores_vector[five_lines_test].initials << endl;
+						++five_lines_test;
+					}
+					output.close();
+				break;
+			case(5):
+				write_scores.open("Difficulty_5_All_scores.txt" , ios_base::app);
+					write_scores << endl << equation_result << '\t' << user_initials;
+				write_scores.close();
+				
+				write_scores.open("Difficulty_5_All_scores.txt");
+
+					while (true)	
+					{
+						write_scores >> score_value;
+						write_scores >> initials_value;
+							value.set_score(score_value);
+							value.set_initials(initials_value);
+						highscores_vector.push_back(value);
+						
+						if(write_scores.eof())
+							break;
+					}
+				write_scores.close();
+				
+				sort(highscores_vector.begin(), highscores_vector.end(),greater<Highscore_Values>());
+				
+				write_scores.open("Difficulty_5_All_scores.txt");
+
+					while(count < highscores_vector.size())
+					{
+						write_scores << highscores_vector[count].score << '\t' << highscores_vector[count].initials << endl;
+						++count;
+					}
+				write_scores.close();	
+					
+////////////////////READ THE TOP 5 LINES TO OUTPUT FILE//////////////////////////////////////////////////////////////////////////////
+					output.open("Difficulty_5_Output.txt", fstream::out);
+					while(five_lines_test < 5)
+					{
+						output << highscores_vector[five_lines_test].score << '\t' << highscores_vector[five_lines_test].initials << endl;
+						++five_lines_test;
+					}
+					output.close();
+				break;
+			case(6):
+				write_scores.open("Difficulty_6_All_scores.txt" , ios_base::app);
+					write_scores << endl << equation_result << '\t' << user_initials;
+				write_scores.close();
+				
+				write_scores.open("Difficulty_6_All_scores.txt");
+
+					while (true)	
+					{
+						write_scores >> score_value;
+						write_scores >> initials_value;
+							value.set_score(score_value);
+							value.set_initials(initials_value);
+						highscores_vector.push_back(value);
+						
+						if(write_scores.eof())
+							break;
+					}
+				write_scores.close();
+				
+				sort(highscores_vector.begin(), highscores_vector.end(),greater<Highscore_Values>());
+				
+				write_scores.open("Difficulty_6_All_scores.txt");
+
+					while(count < highscores_vector.size())
+					{
+						write_scores << highscores_vector[count].score << '\t' << highscores_vector[count].initials << endl;
+						++count;
+					}
+				write_scores.close();	
+					
+////////////////////READ THE TOP 5 LINES TO OUTPUT FILE//////////////////////////////////////////////////////////////////////////////
+					output.open("Difficulty_6_Output.txt", fstream::out);
+					while(five_lines_test < 5)
+					{
+						output << highscores_vector[five_lines_test].score << '\t' << highscores_vector[five_lines_test].initials << endl;
+						++five_lines_test;
+					}
+					output.close();
+				break;
+			case(7):
+				write_scores.open("Difficulty_7_All_scores.txt" , ios_base::app);
+					write_scores << endl << equation_result << '\t' << user_initials;
+				write_scores.close();
+				
+				write_scores.open("Difficulty_7_All_scores.txt");
+
+					while (true)	
+					{
+						write_scores >> score_value;
+						write_scores >> initials_value;
+							value.set_score(score_value);
+							value.set_initials(initials_value);
+						highscores_vector.push_back(value);
+						
+						if(write_scores.eof())
+							break;
+					}
+				write_scores.close();
+				
+				sort(highscores_vector.begin(), highscores_vector.end(),greater<Highscore_Values>());
+				
+				write_scores.open("Difficulty_7_All_scores.txt");
+
+					while(count < highscores_vector.size())
+					{
+						write_scores << highscores_vector[count].score << '\t' << highscores_vector[count].initials << endl;
+						++count;
+					}
+				write_scores.close();	
+					
+////////////////////READ THE TOP 5 LINES TO OUTPUT FILE//////////////////////////////////////////////////////////////////////////////
+					output.open("Difficulty_7_Output.txt", fstream::out);
+					while(five_lines_test < 5)
+					{
+						output << highscores_vector[five_lines_test].score << '\t' << highscores_vector[five_lines_test].initials << endl;
+						++five_lines_test;
+					}
+					output.close();
+				break;			
+		}
+	}
+
 // - - - - - Detach b_row Buttons Function - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //	
 	void Game::detach_b_row_buttons(int difficulty_level)
 	{
@@ -1030,9 +1288,6 @@ Game::Game(Point p , int w , int h , const string& name)		//Define our construct
 				break;
 		}
 	}
-	
-	
-	
 	
 	
 	
@@ -1213,16 +1468,30 @@ double Game::calculate_equation_fct()
 	{
 		cerr << "error: " << e.what() << '\n'; 
 		keep_window_open();
-		return 1;
+		return 0;
 	}
 	catch (...) 
 	{
 		cerr << "Oops: unknown exception!\n"; 
 		keep_window_open();
-		return 2;
+		return 0;
 	}
 	
 	
 }
 //------------------------------------------------------------------------
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

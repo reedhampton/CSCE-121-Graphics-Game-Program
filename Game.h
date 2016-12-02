@@ -6,6 +6,22 @@
 
 using namespace Graph_lib;
 
+class Highscore_Values
+{
+	public:
+		string initials;
+		double score;
+	public:
+		Highscore_Values();	
+		void set_initials(string);
+		void set_score(double);
+		bool operator > (const Highscore_Values& str) const
+		{
+			return (score > str.score);
+		}
+};
+
+
 class Game : public Graph_lib::Window	//Extend Bootup from Graph_lib::Window
 {
 	private:
@@ -15,6 +31,8 @@ class Game : public Graph_lib::Window	//Extend Bootup from Graph_lib::Window
 		int c_operands;
 		int c_left_parenthesis;
 		int c_right_parenthesis;
+		
+		string user_initials;
 		
 		vector <char> a_line;
 		vector <char> b_line;
@@ -35,11 +53,14 @@ class Game : public Graph_lib::Window	//Extend Bootup from Graph_lib::Window
 		string button_6b_content;
 		string button_7b_content;
 		
+		string final_score_text;
+		
 		int b_line_counter;
 		
 		stringstream st;
 		
-		double equation_result;
+		vector<Highscore_Values> highscores_vector;
+		
 		string equation_result_string;
 		
 		void generate_randomized_vector(vector<char>&);		//0-16 as int values, each representing a character
@@ -88,9 +109,15 @@ class Game : public Graph_lib::Window	//Extend Bootup from Graph_lib::Window
 		Nonconst_Button button_7b;
 		
 		Button evaluate;
-		Nonconst_Button button_result;
-
 		
+		Rectangle score_box;
+		Nonconst_Text final_score;
+		Button move_to_highscores_button;
+		
+			static void cb_move_to_highscores(Address , Address);
+			void show_highscores();
+		
+		void write_to_highscores();
 		
 	public:
 		Game(Point p , int w , int h , const string& name);		//Declare our constructor
@@ -165,11 +192,11 @@ class Game : public Graph_lib::Window	//Extend Bootup from Graph_lib::Window
 		
 		double calculate_equation_fct();
 		
-		static void cb_button_result(Address , Address);	//Declare our callback function
-		void button_result_fct();
 		
 		void detach_b_row_buttons(int);
 		void b_row_copy(int);
+		
+		double equation_result;
 };
 
 //				 Define Class Token for the calculator
@@ -196,5 +223,4 @@ private:
     bool full;        // is there a Token in the buffer?
     Token buffer;     // here is where we keep a Token put back using putback()
 };
-
 #endif

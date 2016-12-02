@@ -69,6 +69,19 @@ void Out_box::attach(Window& win)
     own = &win;
 }
 
+void Nonconst_Out_box::put(string& s)
+{
+    reference_to<Fl_Output>(pw).value(s.c_str());
+}
+
+//------------------------------------------------------------------------------
+
+void Nonconst_Out_box::attach(Window& win)
+{
+    pw = new Fl_Output(loc.x, loc.y, width, height, label.c_str());
+    own = &win;
+}
+
 //------------------------------------------------------------------------------
 
 int Menu::attach(Button& b)
