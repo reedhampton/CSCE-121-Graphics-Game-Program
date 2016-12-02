@@ -73,7 +73,10 @@ class Game : public Graph_lib::Window	//Extend Bootup from Graph_lib::Window
 				Button* difficulty_4_button;
 				Button* difficulty_5_button;
 				Button* difficulty_6_button;
-				Button* difficulty_7_button;		
+				Button* difficulty_7_button;	
+
+		Out_box game_screen_outbox;
+				string string_to_outbox;
 	//Rectangle containers for the top row
 		Rectangle box_1a;
 		Rectangle box_2a;

@@ -61,22 +61,14 @@ void Out_box::put(const string& s)
     reference_to<Fl_Output>(pw).value(s.c_str());
 }
 
-//------------------------------------------------------------------------------
-
-void Out_box::attach(Window& win)
-{
-    pw = new Fl_Output(loc.x, loc.y, width, height, label.c_str());
-    own = &win;
-}
-
-void Nonconst_Out_box::put(string& s)
+void Out_box::put(string& s)
 {
     reference_to<Fl_Output>(pw).value(s.c_str());
 }
 
 //------------------------------------------------------------------------------
 
-void Nonconst_Out_box::attach(Window& win)
+void Out_box::attach(Window& win)
 {
     pw = new Fl_Output(loc.x, loc.y, width, height, label.c_str());
     own = &win;

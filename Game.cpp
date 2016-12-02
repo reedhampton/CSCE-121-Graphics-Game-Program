@@ -27,6 +27,7 @@ Highscore_Values::Highscore_Values()
 Game::Game(Point p , int w , int h , const string& name)		//Define our constructor
 : Graph_lib::Window(p, w, h, name),
   rectangle_w_h (75),
+  string_to_outbox("Highscores:") , 
   c_digits(0),
   c_operands(0),
   c_left_parenthesis(0) , 
@@ -55,6 +56,8 @@ Game::Game(Point p , int w , int h , const string& name)		//Define our construct
   back_button{Point {10, 10} , 50 , 30, "back" , cb_back} ,		
   menu_button{Point {513, 385} , 175 , 30, "Select the Difficulty Level" , cb_menu_pressed} ,
   select_difficulty_menu{Point {463, 385} , 65 , 30, Menu::horizontal , "Select The Difficulty Level"} , 
+   ////////////////MENU BUTTONS TO ATTACH//////////////////////////////////
+  game_screen_outbox{Point{1000 , 50}, 150, 250 , ""} , 
   ////////////////MENU BUTTONS TO ATTACH//////////////////////////////////
   difficulty_3_button(new Button {Point {190, 700} , 50 , 30, "3" , cb_difficulty_3}) , 
   difficulty_4_button(new Button {Point {300, 700} , 50 , 30, "4" , cb_difficulty_4}) ,
@@ -100,6 +103,7 @@ Game::Game(Point p , int w , int h , const string& name)		//Define our construct
 
 {
 	attach(back_button);	//Attach the back button
+	attach(game_screen_outbox);
 	attach(menu_button);	//Attach the menu_button button
 			select_difficulty_menu.attach(difficulty_3_button);	//Attach buttons to the menu
 			select_difficulty_menu.attach(difficulty_4_button);
@@ -320,10 +324,6 @@ Game::Game(Point p , int w , int h , const string& name)		//Define our construct
 	{
 		dynamic_cast<Game*>(manager_instance.game_window)->menu_button.hide();
 		dynamic_cast<Game*>(manager_instance.game_window)->attach(select_difficulty_menu);
-		
-		
-		
-		
 	}
 // - - - - - Fill a_line vector Function - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //	
 	void Game::generate_randomized_vector(vector<char>& a_line)

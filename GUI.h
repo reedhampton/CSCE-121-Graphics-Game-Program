@@ -93,15 +93,7 @@ namespace Graph_lib {
             :Widget(xy,w,h,s,0) { }
         void put(int);
         void put(const string&);
-
-        void attach(Window& win);
-    };
-
-	 struct Nonconst_Out_box : Widget {
-        Out_box(Point xy, int w, int h,  string& s)
-            :Widget(xy,w,h,s,0) { }
-        void put(int);
-        void put(string&);
+		void put(string&);
 
         void attach(Window& win);
     };
