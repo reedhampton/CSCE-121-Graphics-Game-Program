@@ -13,6 +13,8 @@ class Highscores : public Graph_lib::Window	//Extend Tutorial from Graph_lib::Wi
 		
 		Text select_diff;
 		Text box_title;
+		stringstream st;
+		string line;
 		
 		Button back_button;			// Declare our button
 		Button difficulty_3_highscores;

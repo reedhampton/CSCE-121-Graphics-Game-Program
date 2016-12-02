@@ -8,8 +8,6 @@ extern Window_Manager manager_instance;
 Highscores::Highscores(Point p , int w , int h , const string& name)		//Define our constructor
 : Graph_lib::Window(p, w, h, name),
   back_button{Point {10, 10} , 50 , 30, "Back" , cb_back} ,  //define the buttons we want to attach
-  //hs_menu_button{Point {100, 100} , 175 , 30, "Select the Difficulty Level" , cb_menu_pressed} ,
-  //hs_difficulty_menu{Point {50, 100} , 65 , 30, Menu::vertical , "Select The Difficulty Level"} , 
   show_scores{Point{350,100} , 700 , 600 , "" } ,
   select_diff{Point {70,70} , "Select difficulty of highscores to view"} ,
   box_title{Point{630,75} , "Highscores"} ,
@@ -21,7 +19,6 @@ Highscores::Highscores(Point p , int w , int h , const string& name)		//Define o
   difficulty_7_highscores{Point {100, 300} , 150 , 50, "7" , cb_difficulty_7} 
 {
 	attach(back_button);											//Attach the button
-	//attach(hs_menu_button);	//Attach the hs_menu_button button
 	attach(select_diff);
 	attach(box_title);
 	attach(difficulty_3_highscores);	//Attach buttons to the menu
@@ -29,9 +26,7 @@ Highscores::Highscores(Point p , int w , int h , const string& name)		//Define o
 	attach(difficulty_5_highscores);
 	attach(difficulty_6_highscores);
 	attach(difficulty_7_highscores);
-	//attach(hs_difficulty_menu);
 	attach(show_scores);
-	//dynamic_cast<Highscores*>(manager_instance.highscores_window)->detach(hs_difficulty_menu);	//then hide the menu right away
 }
 // - - - - - Back Button Callback and Function - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 	void Highscores::cb_back(Address, Address pw)							//Define our call back function
@@ -41,7 +36,6 @@ Highscores::Highscores(Point p , int w , int h , const string& name)		//Define o
 	
 	void Highscores::back_button_function()
 	{
-		//dynamic_cast<Highscores*>(manager_instance.highscores_window)->hs_menu_button.show();
 		manager_instance.highscores_window->hide();							
 		manager_instance.bootup_window->show();							// Run hide() on the member (bootup_window) of manager_instance		
 	}
@@ -57,10 +51,19 @@ Highscores::Highscores(Point p , int w , int h , const string& name)		//Define o
 	{
 		difficulty_level = 3;
 		
-		
 		//Print Highscores of difficulty 3
+		ifstream inFile;
+		inFile.open("Difficulty_3_Output");
 		
-		
+		if(inFile.is_open())
+		{
+			while(!inFile.eof())
+			{
+				getline(inFile, line);
+				cout<<getcontent<<endl;
+			}
+		}
+		inFile.close("Difficulty_3_Output");
 	}
 
 // - - - - - Difficulty Level 4 Callback and Function - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //	
