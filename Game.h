@@ -6,16 +6,16 @@
 
 using namespace Graph_lib;
 
-class Highscore_Values
+class Highscore_Values		//Create a unique type to store our scores
 {
 	public:
-		string initials;
+		string initials;	//declare the fields
 		double score;
 	public:
 		Highscore_Values();	
 		void set_initials(string);
 		void set_score(double);
-		bool operator > (const Highscore_Values& str) const
+		bool operator > (const Highscore_Values& str) const	//redefine the greater than operator
 		{
 			return (score > str.score);
 		}
@@ -24,19 +24,22 @@ class Highscore_Values
 
 class Game : public Graph_lib::Window	//Extend Bootup from Graph_lib::Window
 {
-	private:
+	private:	
+	//Declare all of our numeric constants
 		int rectangle_w_h;
 		int difficulty_level;						// 3 - 7
 		int c_digits;
 		int c_operands;
 		int c_left_parenthesis;
 		int c_right_parenthesis;
+		bool remove_initials_box;		//Helps fix errors with pressing the back button at different stages in the game window
+		bool remove_score_elements;
 		
 		string user_initials;
-		
+	//Declare or a and b line vectors	
 		vector <char> a_line;
 		vector <char> b_line;
-		
+	//Declare strings that will hold the expressions for the top row of buttons	
 		string button_1a_content;
 		string button_2a_content;
 		string button_3a_content;
@@ -44,7 +47,7 @@ class Game : public Graph_lib::Window	//Extend Bootup from Graph_lib::Window
 		string button_5a_content;
 		string button_6a_content;
 		string button_7a_content;
-		
+	//Declare strings that will hold the expressions for the bottom row of buttons		
 		string button_1b_content;
 		string button_2b_content;
 		string button_3b_content;
@@ -52,21 +55,20 @@ class Game : public Graph_lib::Window	//Extend Bootup from Graph_lib::Window
 		string button_5b_content;
 		string button_6b_content;
 		string button_7b_content;
-		
+	//Declare a string object to hold the final score	
 		string final_score_text;
-		
+	//Decare counters and streams	
 		int b_line_counter;
 		
 		stringstream st;
-		
-		vector<Highscore_Values> highscores_vector;
-		
-		string equation_result_string;
-		
+	//Declare objects associated with printing score result	
+		vector<Highscore_Values> highscores_vector;	
+			string equation_result_string;
+	//Declare functions for generating our randomized equation	
 		void generate_randomized_vector(vector<char>&);		//0-16 as int values, each representing a character
 		void convert_and_insert(vector<char>& , int , int);
-	
-		Button back_button;											// Declare our button
+	//Declare our intial buttons and menus to attach
+		Button back_button;										
 		Button menu_button;
 			Menu select_difficulty_menu;
 				Button* difficulty_3_button;
@@ -74,13 +76,17 @@ class Game : public Graph_lib::Window	//Extend Bootup from Graph_lib::Window
 				Button* difficulty_5_button;
 				Button* difficulty_6_button;
 				Button* difficulty_7_button;	
-				
+	//Text objects that hold the highscores for each difficulty level			
+		string highscore_label;
+			Nonconst_Text game_screen_highscore_label;
 		string string_to_outbox;
 			Nonconst_Text game_screen_scores_1;
 			Nonconst_Text game_screen_scores_2;
 			Nonconst_Text game_screen_scores_3;
 			Nonconst_Text game_screen_scores_4;
 			Nonconst_Text game_screen_scores_5;
+	//Create inbox for users initials	
+		In_box box_for_initials;
 			
 	//Rectangle containers for the top row
 		Rectangle box_1a;
@@ -115,9 +121,9 @@ class Game : public Graph_lib::Window	//Extend Bootup from Graph_lib::Window
 		Nonconst_Button button_5b;
 		Nonconst_Button button_6b;
 		Nonconst_Button button_7b;
-		
+	//Declare our evaluate button	
 		Button evaluate;
-		
+	//Declare all graphics objects that will be attached when evaluate is pressed	
 		Rectangle score_box;
 		Nonconst_Text final_score;
 		Button move_to_highscores_button;
@@ -207,6 +213,7 @@ class Game : public Graph_lib::Window	//Extend Bootup from Graph_lib::Window
 		double equation_result;
 };
 
+////////////////////////////CALCULATOR DECLARATIONS//////////////////////////////////////////
 //				 Define Class Token for the calculator
 
 class Token {
